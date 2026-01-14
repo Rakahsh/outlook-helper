@@ -556,88 +556,6 @@
                     }
                 });
 
-                const convertFontIconToImage = function (item) {
-                    const found_elem_replaced =
-                        item.querySelector(".done_replacement") || "";
-                    if (found_elem_replaced) {
-                        return;
-                    }
-
-                    // Get the canvas element
-                    let canvas = document.createElement("canvas");
-                    let context = canvas.getContext("2d");
-
-                    // Set canvas size to match icon size
-                    let iconWidth = item.offsetWidth;
-                    let iconHeight = item.offsetHeight;
-                    canvas.width = iconWidth;
-                    canvas.height = iconHeight;
-
-                    // Get the computed styles of the font icon
-                    let iconStyles = window.getComputedStyle(item);
-
-                    // Set the font and size for the canvas
-                    context.font =
-                        iconStyles.getPropertyValue("font-size") +
-                        " " +
-                        iconStyles.getPropertyValue("font-family");
-
-                    // Get the color of the font icon
-                    let iconColor = iconStyles.getPropertyValue("color");
-
-                    // Set the color for the canvas text
-                    context.fillStyle = iconColor;
-
-                    // Draw the font icon onto the canvas
-                    context.fillText(item.innerHTML, 0, iconHeight);
-
-                    // Convert the canvas to a data URL representing the image
-                    let imageURL = canvas.toDataURL();
-
-                    // Create an image element to replace the font icon
-                    let imgElement = new Image();
-                    imgElement.src = imageURL;
-
-                    //item.getAttribute('class').indexOf('ms-Image-image ms-Image-image--contain') !== -1 || // viva icon
-                    if (
-                        item
-                            .getAttribute("class")
-                            .indexOf("ms-Button-icon HdWmP") !== -1 ||
-                        item
-                            .getAttribute("class")
-                            .indexOf("ms-Button-icon igADf") !== -1 ||
-                        item.getAttribute("class").indexOf("S46JX") !== -1 ||
-                        item
-                            .getAttribute("class")
-                            .indexOf("ms-Image-image i6XlR") !== -1
-                    ) {
-                        if (
-                            item.dataset.iconName == "Cloud" ||
-                            item.dataset.iconName == "Download" ||
-                            item.dataset.iconName == "DoubleChevronDown"
-                        ) {
-                            // Adjust the vertical-align property of the image
-                            imgElement.style.verticalAlign = "top";
-                            imgElement.style.margin = "0 2px 0 2px";
-                            imgElement.style.display = "inline-block";
-                            imgElement.style.top = "-3px";
-                            imgElement.style.position = "relative";
-                        }
-
-                        if (item.dataset.iconName == "ChevronDown") {
-                            imgElement.style.verticalAlign = "top";
-                            imgElement.style.margin = "0 2px 0 2px";
-                            imgElement.style.display = "inline-block";
-                            imgElement.style.top = "3px";
-                            imgElement.style.position = "relative";
-                        }
-                    }
-
-                    // Replace the font icon with the image
-                    item.parentNode !== null &&
-                        item.parentNode.replaceChild(imgElement, item);
-                };
-
                 // function abandoned encountering CORS issue with Chrome
                 const convertImageToImageWithDataSrcEnabled = function (item) {
                     // Create a canvas element
@@ -675,28 +593,6 @@
                 // const iconElement15 = document.querySelectorAll('.ms-Button-icon.igADf') || (() => { console.log(`[Outlook Helper Log] No selector found: .ms-Button-icon.igADf`); return false; })();
                 // const iconElement16 = document.querySelectorAll('.ExRIs i.S46JX') || (() => { console.log(`[Outlook Helper Log] No selector found: .ExRIs i.S46JX`); return false; })();
 
-                const allItems = [
-                    // ...iconElement1,
-                    // ...iconElement2,
-                    // ...iconElement3,
-                    // ...iconElement4,
-                    // ...iconElement5,
-                    // ...iconElement6,
-                    // ...iconElement7,
-                    // ...iconElement8,
-                    // ...iconElement9,
-                    // ...iconElement10,
-                    // ...iconElement12,
-                    // ...iconElement13,
-                    //...iconElement14,
-                    // ...iconElement15,
-                    // ...iconElement16,
-                    // ...iconElement11A,
-                    // ...iconElement11
-                ];
-                allItems.forEach((item) => {
-                    convertFontIconToImage(item);
-                });
 
                 // function abandoned encountering CORS issue with Chrome
                 // const imgElements  = document.querySelectorAll('.ms-Image-image.ms-Image-image--contain');
