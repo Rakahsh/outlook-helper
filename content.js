@@ -2310,6 +2310,32 @@ https://www.giveback.my/wp-admin/theme-editor.php?file=functions.php&theme=essen
                     console.log("Draggable available:", typeof Draggable);
                     console.log("domtoimage available:", typeof domtoimage);
 
+                    // Safety check for GSAP
+                    if (typeof gsap === "undefined") {
+                        console.error("GSAP not loaded! Check:");
+                        console.error("1. File exists in libs/ folder");
+                        console.error(
+                            "2. manifest.json includes it in content_scripts"
+                        );
+                        console.error(
+                            "3. No errors in chrome://extensions console"
+                        );
+                        return;
+                    }
+
+                    // Safety check for Draggable
+                    if (typeof Draggable === "undefined") {
+                        console.error("Draggable not loaded! Check:");
+                        console.error("1. File exists in libs/ folder");
+                        console.error(
+                            "2. manifest.json includes it in content_scripts"
+                        );
+                        console.error(
+                            "3. No errors in chrome://extensions console"
+                        );
+                        return;
+                    }
+
                     // Safety check
                     if (typeof domtoimage === "undefined") {
                         console.error("domtoimage not loaded! Check:");
